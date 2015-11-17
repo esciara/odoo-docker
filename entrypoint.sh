@@ -9,16 +9,6 @@ set -e
 : ${PGPASSWORD:=$DB_ENV_POSTGRES_PASSWORD}
 export PGHOST PGPORT PGUSER PGPASSWORD
 
-case "$1" in
-	--)
-		shift
-		exec openerp-server "$@"
-		;;
-	-*)
-		exec openerp-server "$@"
-		;;
-	*)
-		exec "$@"
-esac
+exec openerp-server -i website_sale --without-demo=True
 
 exit 1
